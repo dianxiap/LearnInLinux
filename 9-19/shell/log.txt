@@ -1,0 +1,5 @@
+total 24
+-rw-rw-r-- 1 wph1.0 wph1.0     0 Sep 19 15:28 log.txt
+-rw-rw-r-- 1 wph1.0 wph1.0    62 Sep 19 15:09 makefile
+-rwxrwxr-x 1 wph1.0 wph1.0 13680 Sep 19 15:28 myshell
+-rw-rw-r-- 1 wph1.0 wph1.0  2942 Sep 19 15:28 myshell.c
