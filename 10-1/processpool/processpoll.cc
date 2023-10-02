@@ -15,14 +15,16 @@ class EndPoint
 {
 private:
     static int number;
+
 public:
     pid_t _child_id;
     int _write_fd;
     std::string processname;
+
 public:
     EndPoint(int id, int fd) : _child_id(id), _write_fd(fd)
     {
-        //process-0[pid:fd]
+        // process-0[pid:fd]
         char namebuffer[64];
         snprintf(namebuffer, sizeof(namebuffer), "process-%d[%d:%d]", number++, _child_id, _write_fd);
         processname = namebuffer;
@@ -51,7 +53,7 @@ void WaitCommand()
         }
         else if (n == 0)
         {
-            std::cout << "父进程让我退出，我就退出了: " << getpid() << std::endl; 
+            std::cout << "父进程让我退出，我就退出了: " << getpid() << std::endl;
             break;
         }
         else
@@ -78,7 +80,8 @@ void createProcesses(vector<EndPoint> *end_points)
         // 一定是子进程
         if (id == 0)
         {
-            for(auto &fd : fds) close(fd);
+            for (auto &fd : fds)
+                close(fd);
 
             // std::cout << getpid() << " 子进程关闭父进程对应的写端：";
             // for(auto &fd : fds)
@@ -87,7 +90,7 @@ void createProcesses(vector<EndPoint> *end_points)
             //     close(fd);
             // }
             // std::cout << std::endl;
-            
+
             // 1.3 关闭不要的fd
             close(pipefd[1]);
             // 我们期望，所有的子进程读取"指令"的时候，都从标准输入读取
@@ -110,7 +113,6 @@ void createProcesses(vector<EndPoint> *end_points)
     }
 }
 
-
 int ShowBoard()
 {
     std::cout << "##########################################" << std::endl;
@@ -128,20 +130,22 @@ void ctrlProcess(const vector<EndPoint> &end_points)
     // 2.1 我们可以写成自动化的，也可以搞成交互式的
     int num = 0;
     int cnt = 0;
-    while(true)
+    while (true)
     {
-        //1. 选择任务
+        // 1. 选择任务
         int command = ShowBoard();
-        if(command == 3) break;
-        if(command < 0 || command > 2) continue;
-        
-        //2. 选择进程
+        if (command == 3)
+            break;
+        if (command < 0 || command > 2)
+            continue;
+
+        // 2. 选择进程
         int index = cnt++;
         cnt %= end_points.size();
         std::string name = end_points[index].name();
-        std::cout << "选择了进程: " <<  name << " | 处理任务: " << command << std::endl;
+        std::cout << "选择了进程: " << name << " | 处理任务: " << command << std::endl;
 
-        //3. 下发任务
+        // 3. 下发任务
         write(end_points[index]._write_fd, &command, sizeof(command));
 
         sleep(1);
@@ -151,16 +155,16 @@ void ctrlProcess(const vector<EndPoint> &end_points)
 void waitProcess(const vector<EndPoint> &end_points)
 {
     // 1. 我们需要让子进程全部退出 --- 只需要让父进程关闭所有的write fd就可以了！
-    // for(const auto &ep : end_points) 
+    // for(const auto &ep : end_points)
     // for(int end = end_points.size() - 1; end >= 0; end--)
-    for(int end = 0; end < end_points.size(); end++)
+    for (int end = 0; end < end_points.size(); end++)
     {
         std::cout << "父进程让子进程退出:" << end_points[end]._child_id << std::endl;
         close(end_points[end]._write_fd);
 
         waitpid(end_points[end]._child_id, nullptr, 0);
         std::cout << "父进程回收了子进程:" << end_points[end]._child_id << std::endl;
-    } 
+    }
     sleep(10);
 
     // 2. 父进程要回收子进程的僵尸状态
@@ -168,7 +172,6 @@ void waitProcess(const vector<EndPoint> &end_points)
     // std::cout << "父进程回收了所有的子进程" << std::endl;
     // sleep(10);
 }
-
 
 // #define COMMAND_LOG 0
 // #define COMMAND_MYSQL 1
