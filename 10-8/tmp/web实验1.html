@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charest="UTF-8">
+    <meta name="keywords" content="WEB基础与前端开发实验一" />
+    <meta name="author" content="吴佩函" />
+    <title>在线课程章节</title>
+    <style>
+        body {
+            width: 1280px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .p {
+            text-indent: 2em;
+        }
+
+        span {
+            font-weight: bold;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        a:hover {
+            font-weight: bold;
+        }
+
+        a:active {
+            color: black;
+        }
+
+        #para {
+            text-align: center;
+        }
+
+        table,
+        td,
+        th {
+            background-color: rgb(248, 247, 239);
+            width: 170px;
+            border: 2px solid white;
+        }
+
+        /*大标题*/
+        .header {
+            padding: 80px;
+            text-align: center;
+            background: dimgrey;
+            color: white;
+        }
+
+        /*导航栏*/
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        /*导航栏链接*/
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            background: #333;
+            text-align: center;
+            padding: 14px 20px;
+        }
+
+        #main {
+            width: 100%;
+            background: #99ff99;
+        }
+
+        /* 创建两个列 */
+        /* 边栏 */
+        .left {
+            width: 14%;
+            height: 100%;
+            background: #f1f1f1;
+            float: left;
+            padding: 20px;
+        }
+
+        /* 主要的内容区域 */
+        .right {
+            width: 78%;
+            height: 100%;
+            background: white;
+            float: right;
+            padding: 20px;
+        }
+
+        .left a:link {
+            text-decoration: none;
+            color: black;
+        }
+
+        .left a:hover {
+            font-weight: bold;
+        }
+
+        .left a:active {
+            color: black;
+        }
+
+        /*字体斜体*/
+        .italic {
+            font-style: italic;
+        }
+
+        /*字体加粗*/
+        .bold {
+            font-style: bold;
+        }
+
+        dl {
+            border: 1px solid black;
+            width: 90px;
+            height: 30px;
+            position: fixed;
+            left: -70px;
+            top: 50%;
+            background: gray;
+            font-size: 1.2em;
+        }
+
+        dl:hover {
+            left: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header" id="top">
+        <h1>WEB基础与前端开发</h1>
+        <p>实验一：在线课程章节页面<br><br>计算机科学技术学院22计科03吴佩函</p>
+    </div>
+    <div class="navbar">
+        <a href="#book1">HTML超文本标记语言</a>
+        <a href="#book2">CSS层叠样式表</a>
+        <a href="#book3">JavaScript</a>
+    </div>
+    <div class="main">
+        <div class="left">
+            <table>
+
+                <tr>
+                    <th>HTML</th>
+                </tr>
+                <tr>
+                    <td><a href="#ch1">文档结构</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">标记语法</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">段落、标题</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">字符、格式</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">列表</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">多媒体</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">超链接</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">表格</a></td>
+                </tr>
+                <tr>
+                    <th>CSS</th>
+                </tr>
+                <tr>
+                    <td><a href="#">语法</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">选择器</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">单位</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">字体样式</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">文本样式</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">颜色与背景</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">列表</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">盒模型</a></td>
+                </tr>
+                <tr>
+                    <th>JavaScript</th>
+                </tr>
+                <tr>
+                    <td><a href="#">*</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">*</a></td>
+                </tr>
+                <dl>
+                    <dt><a href="#top">返回顶部&uarr;</a></dt>
+                </dl>
+            </table>
+
+        </div>
+
+        <div class="right">
+
+            <h2 id="book1">一.HTML超文本标记语言</h2>
+            <p id="#ch1"><span>超文本标记语言（英语：HyperText Markup
+                    Language，简称：HTML）是一种用于创建网页的标准标记语言。</span><br><br>HTML文档的基本结构如下<br>
+                <br>
+                <img src="html文档结构.png" width="40%">
+            </p>
+            <p>运行演示</p>
+            <img src="QQ截图20231008161440.png" alt="HTML文档结构演示" width="75%">
+            <img src="QQ截图20231008161547.png" alt="HTML文档结构演示" width="75%">
+            <h2 id="book2">二.CSS层叠样式表</h2>
+
+            <p>
+                <span>CSS （Cascading Style Sheets,层叠样式表），是一种用来为结构化文档（如 HTML 文档或 XML 应用）添加样式（字体、间距和颜色等）的计算机语言，CSS 文件扩展名为
+                    .css。</span>
+            </p>
+            <h2 id="book3">三.JavaScript</h2>
+            <p><span>JavaScript是一种基于对象和事件驱动并具有相对安全性的客户端脚本语言，被广泛应用于各种客户端Web程序开发中。</span></p>
+
+            <source preload="auto" autoplay controls>
+
+            <video src="WeChat_20231008162636.mp4" controls></video>
+            <p>播放器：Clsr (Aash Mehta Flip)</p>
+            <audio src="Aash Mehta The Chainsmokers - Clsr (Aash Mehta Flip).mp3" autoplay controls></audio>
+        </div>
+    </div>
+</body>
+
+</html>
