@@ -1,0 +1,19 @@
+[NORMAL] [1697463117]Thread-1 启动成功
+[NORMAL] [1697463117]Thread-2 启动成功
+[NORMAL] [1697463117]Thread-3 启动成功
+[WARNING] [1697463117]Thread-1处理完成：58+8=66 | Task.hpp | 22
+[WARNING] [1697463118]Thread-3处理完成：99+9=108 | Task.hpp | 22
+[WARNING] [1697463119]Thread-2处理完成：45+4=49 | Task.hpp | 22
+[NORMAL] [1697463132]Thread-1 启动成功
+[NORMAL] [1697463132]Thread-2 启动成功
+[NORMAL] [1697463132]Thread-3 启动成功
+[WARNING] [1697463132]Thread-1处理完成：17+1=18 | Task.hpp | 22
+[WARNING] [1697463133]Thread-3处理完成：7+8=15 | Task.hpp | 22
+[WARNING] [1697463134]Thread-2处理完成：22+2=24 | Task.hpp | 22
+[WARNING] [1697463135]Thread-1处理完成：96+1=97 | Task.hpp | 22
+[WARNING] [1697463136]Thread-3处理完成：44+10=54 | Task.hpp | 22
+[WARNING] [1697463137]Thread-2处理完成：6+1=7 | Task.hpp | 22
+[WARNING] [1697463138]Thread-1处理完成：79+2=81 | Task.hpp | 22
+[WARNING] [1697463139]Thread-3处理完成：16+9=25 | Task.hpp | 22
+[WARNING] [1697463140]Thread-2处理完成：79+10=89 | Task.hpp | 22
+[WARNING] [1697463141]Thread-1处理完成：67+7=74 | Task.hpp | 22
