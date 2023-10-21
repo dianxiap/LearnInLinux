@@ -3,7 +3,6 @@
 
 #include "log.hpp"
 #include <iostream>
-#include <unordered_map>
 #include <string>
 #include <cstdio>
 #include <cerrno>
@@ -84,57 +83,19 @@ public:
             socklen_t len = sizeof(peer);
 
             size_t s = recvfrom(_sock, buffer, sizeof(buffer) - 1, 0, (struct sockaddr *)&peer, &len);
-            
-            char result[256];
-            char key[64];
-            string cmd_echo;
             if (s > 0)
             {
                 buffer[s] = 0; // 我们目前数据当作字符串
                 // （1）输出发送的数据信息
                 // （2）是谁发送的
-                // （3）客户发的字符串是指令，服务端执行完毕后返还执行结果
-                
-
-                //执行命令
-                // FILE* fp=popen(buffer,"r");
-                // if(nullptr==fp)
-                // {
-                //     logmessage(ERROR,"popen: %d:%s",errno,strerror(errno));
-                //     continue;
-                // }
-                // //读取命令执行结果
-                // while(fgets(result,sizeof result,fp)!=nullptr)
-                // {   
-                //     cmd_echo+=result;
-                // }
-                // fclose(fp);
-
                 uint16_t cli_port = ntohs(peer.sin_port); // 从网络中来的
                 string cli_ip = inet_ntoa(peer.sin_addr); // 4字节网络序列ip -> 本主机字符串风格ip
-                snprintf(key,sizeof key,"%s-%u",cli_ip.c_str(),cli_port);
-                
-                logmessage(NORMAL,"key: %s",key);
-
-                auto it=_users.find(key);
-                if(it==_users.end())
-                {
-                    logmessage(NORMAL,"add new use: %s",key);
-                    _users.insert({key,peer});
-                }
-                // printf("[%s:%d]# %s\n", cli_ip.c_str(), cli_port, buffer);
+                printf("[%s:%d]# %s\n", cli_ip.c_str(), cli_port, buffer);
             }
             // 分析和处理数据
 
             // end.写回数据，接收数据后，再把数据返还对端服务器
-            for(auto &iter:_users)
-            {
-                string sendmessage=key;
-                sendmessage+="# ";
-                sendmessage+=buffer;   
-                logmessage(NORMAL,"push message to: %s",iter.first.c_str());
-                sendto(_sock, sendmessage.c_str(), sendmessage.size(), 0, (struct sockaddr *)&iter.second, sizeof iter.second);
-            }
+            sendto(_sock, buffer, strlen(buffer), 0, (struct sockaddr *)&peer, len);
         }
     }
 
@@ -149,7 +110,6 @@ private:
     uint16_t _port;
     string _ip;
     int _sock;
-    unordered_map<string,struct sockaddr_in> _users;
 };
 
 #endif
