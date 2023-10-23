@@ -54,13 +54,13 @@ void calculator(int sock)
     {
         std::string str = Recv(sock); // 收到了一个请求
         Request req;
-        //1.反序列化
+        // 1.反序列化
         req.Deseriallized(str);
-        //2.对结构化的数据计算，返回结果
+        // 2.对结构化的数据计算，返回结果
         Response resp = calculatorHelp(req);
-        //3.对计算结果进行序列化，然后返还客户端
-        std::string respString =resp.Seriallize();
-        Send(sock,respString);
+        // 3.对计算结果进行序列化，然后返还客户端
+        std::string respString = resp.Seriallize();
+        Send(sock, respString);
     }
 }
 
@@ -72,17 +72,21 @@ int main(int argc, char *argv[])
         usage(argv[0]);
         exit(1);
     }
+    
+    std::unique_ptr<TcpServer> server(new TcpServer(atoi(argv[1])));
+    server->BindService(calculator);
+    server->start();
     // std::unique_ptr<TcpServer> server(new TcpServer(atoi(argv[1])));
     // server->BindService();
     // server->start();
 
-    Request req(123,456,'+');
-    std::string s=req.Seriallize();
-    std::cout<<s<<std::endl;
-    
-    Request temp;
-    temp.Deseriallized(s);
-    std::cout<<temp.x_<<std::endl;
-    std::cout<<temp.op_<<std::endl;
-    std::cout<<temp.y_<<std::endl;
+    // Request req(123,456,'+');
+    // std::string s=req.Seriallize();
+    // std::cout<<s<<std::endl;
+
+    // Request temp;
+    // temp.Deseriallized(s);
+    // std::cout<<temp.x_<<std::endl;
+    // std::cout<<temp.op_<<std::endl;
+    // std::cout<<temp.y_<<std::endl;
 }

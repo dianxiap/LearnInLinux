@@ -69,8 +69,10 @@ public:
             logMessage(ERROR, "accept error, %d:%s", errno, strerror(errno));
             return -1;
         }
-        if(port) *port = ntohs(src.sin_port);
-        if(ip) *ip = inet_ntoa(src.sin_addr);
+        if (port)
+            *port = ntohs(src.sin_port);
+        if (ip)
+            *ip = inet_ntoa(src.sin_addr);
         return servicesock;
     }
     bool Connect(int sock, const std::string &server_ip, const uint16_t &server_port)
@@ -81,8 +83,10 @@ public:
         server.sin_port = htons(server_port);
         server.sin_addr.s_addr = inet_addr(server_ip.c_str());
 
-        if(connect(sock, (struct sockaddr*)&server, sizeof(server)) == 0) return true;
-        else return false;
+        if (connect(sock, (struct sockaddr *)&server, sizeof(server)) == 0)
+            return true;
+        else
+            return false;
     }
     ~Sock() {}
 };
