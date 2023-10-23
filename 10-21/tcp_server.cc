@@ -1,23 +1,22 @@
 #include "tcp_server.hpp"
 #include <memory>
 
-static void usage(string proc)
+static void usage(std::string proc)
 {
-    cout<<"\nUsage: "<<proc<<" port\n"<<endl;
+    std::cout << "\nUsage: " << proc << " port\n" << std::endl;
 }
 
-//.tcp_server port
-int main(int argc,char* argv[])
+// ./tcp_server port
+int main(int argc, char *argv[])
 {
-    if(argc!=2)
+    if(argc != 2)
     {
         usage(argv[0]);
         exit(1);
     }
-    uint16_t port=atoi(argv[1]);
-    unique_ptr<TcpServer> svr(new TcpServer(port));
-    
+    uint16_t port = atoi(argv[1]);
+    std::unique_ptr<TcpServer> svr(new TcpServer(port));
     svr->initServer();
-    svr->Start();
+    svr->start();
     return 0;
 }
