@@ -27,6 +27,8 @@ public:
         {
             exit(2);
         }
+        int opt=1;
+        setsockopt(listensock,SOL_SOCKET,SO_REUSEADDR | SO_REUSEPORT, &opt,sizeof opt);
         return listensock;
     }
     void Bind(int sock, uint16_t port, std::string ip = "0.0.0.0")
